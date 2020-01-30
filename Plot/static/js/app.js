@@ -1,5 +1,6 @@
-d3.json("../samples.json").then((incomingData) => {
-    function filterName(button){
-        return button.name;
-    }
+d3.json("data/samples.json").then((incomingData) => {
+   
+    var data = incomingData;
+
+    console.log(incomingData)
 });
