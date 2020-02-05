@@ -110,6 +110,54 @@ d3.json('samples.json').then((incomingData) => {
 
         //Adding plot to the html page
         Plotly.newPlot('bubble', bubbleData);
+
+        //Getting data for the guage plot
+        var gaugeData = data.metadata;
+
+        var scrubing = 0;
+
+        for (var k = 0; k < gaugeData.length; k++){
+            if(gaugeData[k].id == ID){
+                scrubing = (gaugeData[k].wfreq);
+            }
+        };
+
+        console.log(scrubing);
+
+        var gaugePlot = [{
+            domain: { x: [0, 1], y: [0, 1] },
+		    value: scrubing,
+		    title: { text: "Belly Button Washing Frequency" },
+		    type: "indicator",
+            mode: "gauge+number",
+            gauge: {
+                axis: { range: [null, 9] },
+                steps: [
+                  { range: [0, 1], color: "antiqueWhite" },
+                  { range: [1, 2], color: "lightyellow" },
+                  {range: [2, 3], color: "moccasin" },
+                  {range: [3, 4], color: "wheat" },
+                  {range: [4, 5], color: "palegreen" },
+                  {range: [5, 6], color: "lightgreen" },
+                  {range: [6, 7], color: "darkseagreen" },
+                  {range: [7, 8], color: "seagreen" },
+                  {range: [8, 9], color: "mediumseagreen" }
+                ],
+                threshold: {
+                  line: { color: "red", width: 5 },
+                  thickness: 0.75,
+                  value: scrubing
+                }
+              }
+        }];
+
+        var gaugeLayout= {
+            width: 600,
+            height: 500,
+            margin: {t: 0, b: 0}
+        };
+
+        Plotly.newPlot("gauge", gaugePlot, gaugeLayout);
     }
 
     //Calling the function to change if the value in drop down menu changes
