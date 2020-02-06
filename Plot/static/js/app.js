@@ -108,8 +108,13 @@ d3.json('samples.json').then((incomingData) => {
             hovertext: otuLabels
         }];
 
+        var bubbleLayout = {
+            height: 600,
+            width: 1000
+        };
+
         //Adding plot to the html page
-        Plotly.newPlot('bubble', bubbleData);
+        Plotly.newPlot('bubble', bubbleData, bubbleLayout);
 
         //Getting data for the guage plot
         var gaugeData = data.metadata;
